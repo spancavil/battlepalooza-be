@@ -1,10 +1,12 @@
 import { Router } from 'express';
 import { UserController } from '../controllers/index';
+import AuthMiddleware from '../middelware/auth';
+
 const router = Router();
 
 router.post('/create', UserController.userRegistration );
-router.get('/', UserController.findOneUser );
-router.get('/search', UserController.findAllUsers );
-router.put('/', UserController.updateUser );
-router.post('/', UserController.deleteUser );
+router.get('/',AuthMiddleware, UserController.findOneUser );
+router.get('/search',AuthMiddleware, UserController.findAllUsers );
+router.put('/',AuthMiddleware, UserController.updateUser );
+router.post('/',AuthMiddleware, UserController.deleteUser );
 export default router;
