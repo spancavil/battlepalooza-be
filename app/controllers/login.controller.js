@@ -1,6 +1,5 @@
-import { LoginService } from '../services/index';
-import logger from "../logger/bunyan";
-
+import { LoginService } from '../services/index.js';
+import logger from "../logger/bunyan.js";
 
 export class LoginController {
     static async login (req, res, next) {

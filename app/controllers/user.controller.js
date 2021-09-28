@@ -1,5 +1,5 @@
-import { UserService } from '../services/index';
-import logger from "../logger/bunyan";
+import { UserService } from '../services/index.js';
+import logger from "../logger/bunyan.js";
 
 export class UserController {
     static async userRegistration (req, res, next) {

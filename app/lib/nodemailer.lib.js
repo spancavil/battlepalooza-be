@@ -1,7 +1,7 @@
 import nodemailer from 'nodemailer';
-import config from '../config';
+import config from '../config/index.js';
 const { USER, PASS, SERVICE } = config.nodemailer;
-import logger from '../logger/bunyan';
+import logger from '../logger/bunyan.js';
 
 class NodeMailerLib {
     static async sendEmail(options){
@@ -16,11 +16,11 @@ class NodeMailerLib {
             });
            await transporter.sendMail(options);
         } catch (error) {
-          logger.error(`Error: ${error.name} Message: ${error.message} Status Code: ${error.status}`);
+          logger.error(`Error at nodemailer: ${error.name} Message: ${error.message} Status Code: ${error.status}`);
           throw { Error: error.name, Message: error.message}
         }
     }
 
     
 }
-export default  NodeMailerLib 
+export default NodeMailerLib; 

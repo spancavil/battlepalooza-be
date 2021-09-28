@@ -7,7 +7,7 @@ const config = {
     PORT: process.env.PORT,
   },
   nodemailer: {
-    USER: process.env.USER,
+    USER: process.env.USERMAIL,
     PASS: process.env.PASS,
     SERVICE: process.env.SERVICE
   },

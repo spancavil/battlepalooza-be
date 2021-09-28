@@ -1,9 +1,9 @@
 import jwt from 'jsonwebtoken';
-import { UserModel} from '../models/index';
-import logger from '../logger/bunyan';
-import config  from '../config/index';
-import HtmlContentGenerator from '../utils/generateHtmlContentForMails'
-import NodeMailerLib from '../lib/nodemailer.lib';
+import { UserModel} from '../models/index.js';
+import logger from '../logger/bunyan.js';
+import config  from '../config/index.js';
+import HtmlContentGenerator from '../utils/generateCodeForEmail.js'
+import NodeMailerLib from '../lib/nodemailer.lib.js';
 
 export class LoginService {
 
@@ -44,12 +44,12 @@ export class LoginService {
         }
     }
 
-    static async sentVerifyCode (email){
+    static async sentVerifyCode ({email}){
         try {
             const code = Math.floor(Math.random() * 900000);
             const user = await UserModel.findByEmail(email);
             user.verifyCode = code;
-            await user.save()
+            await user.save();
             const options = HtmlContentGenerator.htmlContentForVerifyCode(code, email)
             await NodeMailerLib.sendEmail(options)
             if(user){

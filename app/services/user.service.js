@@ -1,11 +1,11 @@
-import { UserModel } from '../models/index';
-import logger from '../logger/bunyan';
+import { UserModel } from '../models/index.js';
+import logger from '../logger/bunyan.js';
 
-export class CustomerService {
+export class UserService {
 
     static async createUser (data) {
         try {
-            const user = UserModel.createUser(data);
+            const user = await UserModel.createUser(data);
             return { message: `User created, thanks ${user.name} ${user.lastName}` };
         } catch (error) {
             logger.error(`Error: ${error.name} ${error.message}`)

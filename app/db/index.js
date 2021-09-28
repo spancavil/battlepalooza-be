@@ -1,8 +1,8 @@
 import Mongoose from 'mongoose';
-import config from '../config/index';
-import logger from '../logger/bunyan';
+import config from '../config/index.js';
+import logger from '../logger/bunyan.js';
 
-Mongoose.connect(`${config.database.host}:${config.database.port}/${config.database.name}`,{
+Mongoose.connect(`${config.database.host}`,{
     useNewUrlParser: true,
     // user: db.common.database.username,
     // pass: db.common.database.password,

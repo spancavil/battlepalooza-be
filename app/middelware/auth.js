@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import config from '../config/index';
+import config from '../config/index.js';
 
 const authMiddleware = async(req, res, next) =>{
     //auth by header

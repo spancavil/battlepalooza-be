@@ -1,14 +1,15 @@
-import config from '../config';
+import config from '../config/index.js';
 const { USER } = config.nodemailer;
 
+console.log(USER);
 
 class HtmlContentGenerator {
 
     static htmlContentForVerifyCode(code, email){
         const contentHTML = `
-        <h1>Insert this Code in you login</h1>
+        <h4>Insert this Code in you login</h1>
         <ul>
-        <li>Verify Code: ${code}</li>
+        <li><h2>Verify Code: ${code}</h2></li>
         </ul>`;
 
         const mailOptions = {
@@ -17,7 +18,6 @@ class HtmlContentGenerator {
             subject: 'Verify Code',
             html: contentHTML,
         };
-
         return mailOptions;
     }
 
