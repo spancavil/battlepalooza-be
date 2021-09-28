@@ -11,11 +11,11 @@ export class LoginService {
      
         try {
             const user = await UserModel.findByEmail(email);
-
+            console.log(user.verifyCode, code);
             if(!user){
-                return {message: 'The user doesnt exist'};
+                return { message: 'The user doesnt exist'};
             }
-            if (user.verifyCode !== code){
+            if (Number(user.verifyCode) !== Number(code)){
                 return {message: 'The code is wrong'};
             }
             const token = jwt.sign({
