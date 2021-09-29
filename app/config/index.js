@@ -7,6 +7,10 @@ const config = {
     PORT: process.env.PORT,
   },
   nodemailer: {
+    CLIENT_ID: process.env.CLIENTID,
+    CLIENT_SECRET: process.env.CLIENT_SECRET,
+    ACCESS_TOKEN: process.env.ACCESS_TOKEN_GMAIL,
+    REFRESH_TOKEN: process.env.REFRESH_TOKEN_GMAIL,
     USER: process.env.USERMAIL,
     PASS: process.env.PASS,
     SERVICE: process.env.SERVICE
