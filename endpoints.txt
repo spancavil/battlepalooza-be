@@ -2,7 +2,7 @@
 ----------
 
 GET / (find one user)
-POST /create
+POST /create (create user with email, name, lastName)
 PUT /
 POST / (delete user)
 GET /search (find all users)
@@ -12,4 +12,4 @@ GET /search (find all users)
 ----------
 
 POST /verify-code (send code by email)
-GET / 
+POST / (email & verification code) 
