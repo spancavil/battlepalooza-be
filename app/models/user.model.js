@@ -3,6 +3,16 @@ import logger from "../logger/bunyan.js";
 
 export class UserModel {
 
+    static async findAll (){
+        try {
+            const users = await User.find({});
+            return users;
+        } catch (error) {
+            logger.error(`Error: ${error.name} ${error.message}`);
+            return { error: error.name, message: error.message};
+        }
+    }
+
     static async createUser (data) {
         try {
             const user = await User.create(data);
@@ -54,5 +64,7 @@ export class UserModel {
             logger.error(`Error: ${error.name} ${error.message}`);
             return { error: error.name, message: error.message};
         }
-    }
+    } 
+
+    static async
 }

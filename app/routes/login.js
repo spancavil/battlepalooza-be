@@ -3,6 +3,6 @@ import { LoginController } from '../controllers/index.js';
 const router = Router();
 
 router.post('/verify-code', LoginController.sentCodeByMail );
-router.get('/', LoginController.login );
+router.post('/', LoginController.login );
 
 export default router;

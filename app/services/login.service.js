@@ -10,8 +10,8 @@ export class LoginService {
     static async generalLogin ({email, code}) {
      
         try {
+            console.log(email, code);
             const user = await UserModel.findByEmail(email);
-            console.log(user.verifyCode, code);
             if(!user){
                 return { message: 'The user doesnt exist'};
             }

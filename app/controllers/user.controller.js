@@ -31,11 +31,12 @@ export class UserController {
     static async findAllUsers (req, res, next) {
         
         try {
+            console.log("Entro a findAll !")
             const data = await UserService.findAllUsers();
             res.json({success: true, data})
         } catch (error) {
-            logger.error(`Error: ${error.name} ${error.message}`)
-            res.status(error.status || 500).json({error: error.name, message: error.message});
+            logger.error(`Error en findAll de User Controller: ${error.name} ${error.message}`)
+            //res.status(error.status || 500).json({error: error.name, message: error.message});
             next(error);
         }
     }

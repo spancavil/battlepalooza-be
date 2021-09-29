@@ -5,7 +5,7 @@ export class UserService {
 
     static async createUser (data) {
         try {
-            const user = await UserModel.createUser(data);
+            const user = awaitUserModel.createUser(data);
             return { message: `User created, thanks ${user.name} ${user.lastName}` };
         } catch (error) {
             logger.error(`Error: ${error.name} ${error.message}`)
