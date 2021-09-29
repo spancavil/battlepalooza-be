@@ -1,12 +1,22 @@
-import { User } from '../schemas/user.schema';
-import logger from "../logger/bunyan";
+import { User } from '../schemas/user.schema.js';
+import logger from "../logger/bunyan.js";
 
 export class UserModel {
 
-    static createUser (data) {
+    static async findAll (){
         try {
-            const user = new User(data);
-            return user    
+            const users = await User.find({});
+            return users;
+        } catch (error) {
+            logger.error(`Error: ${error.name} ${error.message}`);
+            return { error: error.name, message: error.message};
+        }
+    }
+
+    static async createUser (data) {
+        try {
+            const user = await User.create(data);
+            return user
         } catch (error) {
             logger.error(`Error: ${error.name} ${error.message}`);
             return { error: error.name, message: error.message};
@@ -54,5 +64,7 @@ export class UserModel {
             logger.error(`Error: ${error.name} ${error.message}`);
             return { error: error.name, message: error.message};
         }
-    }
+    } 
+
+    static async
 }

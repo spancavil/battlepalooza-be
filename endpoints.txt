@@ -1,0 +1,15 @@
+/api/user
+----------
+
+GET / (find one user)
+POST /create
+PUT /
+POST / (delete user)
+GET /search (find all users)
+
+
+/api/login
+----------
+
+POST /verify-code (send code by email)
+GET / 

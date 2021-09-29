@@ -1,8 +1,8 @@
 import express from 'express';
-import user from './user';
-import login from './login'
+import user from './user.js';
+import login from './login.js'
 
-var router = express.Router();
+const router = express.Router();
 
 router.use('/api/login', login);
 router.use('/api/user', user);

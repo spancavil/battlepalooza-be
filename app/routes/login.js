@@ -1,8 +1,8 @@
 import { Router } from 'express';
-import { LoginService } from '../controllers/index';
+import { LoginController } from '../controllers/index.js';
 const router = Router();
 
-router.post('/verify-code', LoginService.sentCodeByMail );
-router.get('/', LoginService.login );
+router.post('/verify-code', LoginController.sentCodeByMail );
+router.post('/', LoginController.login );
 
 export default router;
