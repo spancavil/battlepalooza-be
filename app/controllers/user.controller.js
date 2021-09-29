@@ -36,7 +36,7 @@ export class UserController {
             res.json({success: true, data})
         } catch (error) {
             logger.error(`Error en findAll de User Controller: ${error.name} ${error.message}`)
-            //res.status(error.status || 500).json({error: error.name, message: error.message});
+            res.status(error.status || 500).json({error: error.name, message: error.message});
             next(error);
         }
     }
