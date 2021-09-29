@@ -10,7 +10,7 @@ export class LoginService {
     static async generalLogin ({email, code}) {
      
         try {
-            console.log(email, code);
+            
             const user = await UserModel.findByEmail(email);
             if(!user){
                 return { message: 'The user doesnt exist'};
@@ -46,7 +46,7 @@ export class LoginService {
 
     static async sentVerifyCode ({email}){
         try {
-            const code = Math.floor(Math.random() * 900000);
+            const code = Math.floor(Math.random() * 899999 + 100000);
             const user = await UserModel.findByEmail(email);
             user.verifyCode = code;
             await user.save();
