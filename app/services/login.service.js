@@ -53,7 +53,7 @@ export class LoginService {
             const options = HtmlContentGenerator.htmlContentForVerifyCode(code, email)
             await NodeMailerLib.sendEmail(options)
             if(user){
-                return { message: 'Email sent with verify code'}
+                return { message: `Email sent with verify code (provisory: ${code}`}
             }
         } catch (error) {
             logger.error(`Error: ${error.name} ${error.message}`);
