@@ -18,8 +18,6 @@ class HtmlContentGenerator {
         };
         return mailOptions;
     }
-
-
 }
 
 export default HtmlContentGenerator
