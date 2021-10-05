@@ -1,5 +1,5 @@
 import config from '../config/index.js';
-const { USER } = config.nodemailer;
+const { USERMAIL } = config.nodemailer;
 
 class HtmlContentGenerator {
 
@@ -11,7 +11,7 @@ class HtmlContentGenerator {
         </ul>`;
 
         const mailOptions = {
-            from: USER,
+            from: USERMAIL,
             to: email,
             subject: 'Verify Code',
             html: contentHTML,

@@ -13,7 +13,7 @@ const config = {
     REDIRECT_URI : process.env.REDIRECT_URI,   
     SERVICE: process.env.SERVICE,
     TYPE: process.env.TYPE,
-    USER: process.env.USER
+    USERMAIL: process.env.USERMAIL
   },
   database:{
     host: process.env.DB_HOST,
