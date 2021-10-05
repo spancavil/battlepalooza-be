@@ -50,8 +50,8 @@ export class LoginService {
             const user = await UserModel.findByEmail(email);
             user.verifyCode = code;
             await user.save();
-            //const options = HtmlContentGenerator.htmlContentForVerifyCode(code, email)
-            //await NodeMailerLib.sendEmail(options)
+            const options = HtmlContentGenerator.htmlContentForVerifyCode(code, email)
+            await NodeMailerLib.sendEmail(options)
             if(user){
                 return { message: `Email sent with verify code (provisory: ${code}`}
             }

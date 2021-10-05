@@ -7,13 +7,13 @@ const config = {
     PORT: process.env.PORT,
   },
   nodemailer: {
-    CLIENT_ID: process.env.CLIENTID,
-    CLIENT_SECRET: process.env.CLIENT_SECRET,
-    ACCESS_TOKEN: process.env.ACCESS_TOKEN_GMAIL,
-    REFRESH_TOKEN: process.env.REFRESH_TOKEN_GMAIL,
-    USER: process.env.USERMAIL,
-    PASS: process.env.PASS,
-    SERVICE: process.env.SERVICE
+    CLIENT_ID: process.env.CLIENT_ID,
+    CLIENT_SECRET: process.env.CLIENT_SECRET,    
+    REFRESH_TOKEN: process.env.REFRESH_TOKEN,
+    REDIRECT_URI : process.env.REDIRECT_URI,   
+    SERVICE: process.env.SERVICE,
+    TYPE: process.env.TYPE,
+    USER: process.env.USER
   },
   database:{
     host: process.env.DB_HOST,
