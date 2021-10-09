@@ -13,3 +13,12 @@ GET /search (find all users)
 
 POST /verify-code (send code by email)
 POST / (email & verification code) 
+
+/api/pack
+----------
+
+GET / (find one pack)
+POST /create (create pack with imgSrc, description, content, price, stock, soldOut, sale)
+PUT /
+POST / (delete pack)
+GET /search (find all packs)
