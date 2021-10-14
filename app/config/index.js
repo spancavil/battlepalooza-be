@@ -13,7 +13,7 @@ const config = {
     REDIRECT_URI : process.env.REDIRECT_URI,   
     SERVICE: process.env.SERVICE,
     TYPE: process.env.TYPE,
-    USER: process.env.USER
+    USERMAIL: process.env.USERMAIL
   },
   database:{
     host: process.env.DB_HOST,
@@ -26,6 +26,9 @@ const config = {
     secret: process.env.SECRET,
     expireIn: process.env.EXPIRE_IN,
     refreshExpireIn: process.env.REFRESH_EXPIRE_IN
+  },
+  recaptcha:{
+    secret: process.env.RECAPTCHA_SECRET
   }
 };
 
