@@ -26,6 +26,9 @@ const config = {
     secret: process.env.SECRET,
     expireIn: process.env.EXPIRE_IN,
     refreshExpireIn: process.env.REFRESH_EXPIRE_IN
+  },
+  recaptcha:{
+    secret: process.env.RECAPTCHA_SECRET
   }
 };
 

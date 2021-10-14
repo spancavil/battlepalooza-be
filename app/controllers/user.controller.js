@@ -1,5 +1,7 @@
 import { UserService } from '../services/index.js';
 import logger from "../logger/bunyan.js";
+import axios from 'axios';
+import config from '../config/index.js';
 
 export class UserController {
     static async userRegistration (req, res, next) {
@@ -64,6 +66,20 @@ export class UserController {
             logger.error(`Error: ${error.name} ${error.message}`);
             res.status(error.status || 500).json({error: error.name, message: error.message});
             next(error);
+        }
+    }
+
+    static async verifyReCaptcha (req, res, next){
+        const {captchaToken} = req.body;
+        try {
+            const response = axios.post(`
+                https://www.google.com/recaptcha/api/siteverify?secret=${config.recaptcha.secret}&response=${captchaToken}`)
+                .then(response => {
+                    res.json(response.data)
+                })
+        } catch (error) {
+            logger.error(`Error: ${error.name} ${error.message}`);
+            res.status(error.status || 500).json({error: error.name, message: error.message});
         }
     }
 }
