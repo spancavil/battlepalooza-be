@@ -22,6 +22,10 @@ export const UsersSchema = Schema({
     created_at:{
         type: Date,
         default: Date.now
+    },
+    getEmails: {
+        type: Boolean,
+        default: false
     }
 });
 
