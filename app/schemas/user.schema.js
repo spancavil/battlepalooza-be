@@ -19,6 +19,12 @@ export const UsersSchema = Schema({
     role: {
         type: String
     },
+    bpToken: {
+        type: String
+    },
+    pid: {
+        type: String
+    },
     created_at:{
         type: Date,
         default: Date.now
