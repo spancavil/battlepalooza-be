@@ -25,6 +25,9 @@ export const UsersSchema = Schema({
     pid: {
         type: String
     },
+    getMails: {
+        type: Boolean
+    },
     created_at:{
         type: Date,
         default: Date.now
