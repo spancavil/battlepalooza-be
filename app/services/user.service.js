@@ -1,12 +1,21 @@
 import { UserModel } from '../models/index.js';
 import logger from '../logger/bunyan.js';
+import AxiosService from '../lib/axios.lib.js';
 
 export class UserService {
 
     static async createUser (data) {
         try {
-            const user = await UserModel.createUser(data);
-            return { message: `User created, thanks ${user.name} ${user.lastName}` };
+            const email = data.email;
+            console.log(data); 
+            const response = await AxiosService.sendCode(email);
+            if (response.success === true) {
+                const user = await UserModel.createUser(data);
+                return { message: `User created, thanks ${user.name} ${user.lastName}` };
+            }
+            else {
+                return { error: "Please try again later"}
+            }
         } catch (error) {
             logger.error(`Error: ${error.name} ${error.message}`)
             return {error: error.name, message: error.message};

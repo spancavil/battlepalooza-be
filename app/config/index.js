@@ -29,6 +29,11 @@ const config = {
   },
   recaptcha:{
     secret: process.env.RECAPTCHA_SECRET
+  },
+  bpEndpoints: {
+    passcode: process.env.PASSCODE_URL,
+    signUp: process.env.SIGNUP_URL,
+    login: process.env.LOGIN_URL
   }
 };
 
