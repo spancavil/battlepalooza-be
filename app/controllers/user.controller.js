@@ -8,11 +8,10 @@ export class UserController {
      
         try {
             const data = await UserService.createUser(req.body);
-            res.json({success: true, data})
+            return res.json({success: true, data})
         } catch (error) {
             logger.error(`Error: ${error.name} ${error.message}`)
-            res.status(error.status || 500).json({error: error.name, message: error.message});
-            next(error);
+            return res.json({error: error.name, message: error.message});
         }
     }
 

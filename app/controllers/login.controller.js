@@ -1,30 +1,27 @@
 import { LoginService } from '../services/index.js';
 import logger from "../logger/bunyan.js";
-import { CodeChallengeMethod } from 'google-auth-library';
 import AxiosService from '../lib/axios.lib.js';
 import { UserModel } from '../models/user.model.js';
 
 export class LoginController {
-    static async firstLogin (req, res, next) {
+    static async firstLogin (req, res) {
 
         try {
             const data = await LoginService.firstLogin(req.body);
-            res.json({success: true, data})
+            return res.json({success: true, data})
             } catch (error) {
             logger.error(`Error: ${error.name} ${error.message}`);
-            res.status(error.status || 500).json({error: error.name, message: error.message});
-            next(error);
+            return res.json({error: error.name, message: error.message});
         }
     }
 
-    static async login (req,res, next){
+    static async login (req,res){
         try {
             const data = await LoginService.login(req.body);
-            res.json({success: true, data})
+            return res.json({success: true, data})
             } catch (error) {
             logger.error(`Error: ${error.name} ${error.message}`);
-            res.status(error.status || 500).json({error: error.name, message: error.message});
-            next(error);
+            return res.json({error: error.name, message: error.message});
         }
     }
 
@@ -32,21 +29,21 @@ export class LoginController {
         try {
             const email = req.body.email
             const user = await UserModel.findByEmail(email);
+            console.log(user)
             if (!user) {
-                res.send ({error: "User doesn't exist"})
+                return res.json({message: "User doesn't exist", success: false})
             }
             const response = await AxiosService.sendCode(email);
             if (response.success === true) {
-                res.send({ message: `Code sent!` });
+                return res.json({ message: `Code sent!` });
             }
             else {
-                res.send({ error: "Please try again later"})
+                return res.json({ message: "Please try again later", success: false})
             }
 
         } catch (error) {
             logger.error(`Error: ${error.name} ${error.message}`);
-            res.status(error.status || 500).json({error: error.name, message: error.message});
-            next(error);
+            res.send({success: false, message: error.message});
         }
     }
 
