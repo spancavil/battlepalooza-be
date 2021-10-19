@@ -18,6 +18,7 @@ export class LoginService {
             }
             
             const response = await AxiosService.signUp(email, code)
+            console.log(response);
 
             if (response.result !== 0){
                 return {message: 'Error at Signup: ' + response.error.text}
