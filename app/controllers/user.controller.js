@@ -81,4 +81,17 @@ export class UserController {
             res.status(error.status || 500).json({error: error.name, message: error.message});
         }
     }
+
+    static async payloadForte (req, res, next){
+
+        console.log(config.bpEndpoints.payloadForte);
+        const {bpTokenHeader, pid} = req.body;
+        try {
+            const response = await axios.post(config.bpEndpoints.payloadForte,{pid}, {headers: bpTokenHeader});
+            return res.json(response.data);
+        } catch (error) {
+            logger.error(`Error: ${error.name} ${error.message}`);
+            res.status(error.status || 500).json({error: error.name, message: error.message});
+        }
+    }
 }

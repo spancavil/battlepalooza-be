@@ -33,7 +33,8 @@ const config = {
   bpEndpoints: {
     passcode: process.env.PASSCODE_URL,
     signUp: process.env.SIGNUP_URL,
-    login: process.env.LOGIN_URL
+    login: process.env.LOGIN_URL,
+    payloadForte: process.env.PAYLOAD_FORTE_URL,
   }
 };
 
