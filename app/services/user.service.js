@@ -25,6 +25,8 @@ export class UserService {
     static async findUserById (id) {
         try {
             const user = await UserModel.findById(id);
+            user.lastLogin = new Date().toLocaleString();
+            await user.save();
             return user;
         } catch (error) {
             logger.error(`Error: ${error.name} ${error.message}`)

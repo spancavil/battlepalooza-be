@@ -31,6 +31,9 @@ export const UsersSchema = Schema({
     created_at:{
         type: Date,
         default: Date.now
+    },
+    lastLogin:{
+        type: String
     }
 });
 
