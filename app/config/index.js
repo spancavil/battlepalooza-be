@@ -35,6 +35,7 @@ const config = {
     signUp: process.env.SIGNUP_URL,
     login: process.env.LOGIN_URL,
     payloadForte: process.env.PAYLOAD_FORTE_URL,
+    forteBalance: process.env.FORTE_BALANCE_URL,
   }
 };
 
