@@ -94,4 +94,16 @@ export class UserController {
             res.status(error.status || 500).json({error: error.name, message: error.message});
         }
     }
+
+    static async forteBalance (req,res){
+        const {bpTokenHeader, pid} = req.body;
+        try {
+            const response = await axios.post(config.bpEndpoints.forteBalance ,{pid}, {headers: bpTokenHeader});
+            return res.json(response.data);
+        } catch (error) {
+            console.log(error);
+            logger.error(`Error: ${error.name} ${error.message}`);
+            res.status(error.status || 500).json({error: error.name, message: error.message});
+        }
+    }
 }

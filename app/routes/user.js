@@ -11,5 +11,6 @@ router.put('/',AuthMiddleware, UserController.updateUser );
 router.post('/',AuthMiddleware, UserController.deleteUser );
 router.post('/verify-recaptcha', UserController.verifyReCaptcha);
 router.post('/payload-forte', UserController.payloadForte);
+router.post('/forte-balance', UserController.forteBalance)
 
 export default router;
