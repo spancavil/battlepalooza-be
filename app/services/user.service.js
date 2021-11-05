@@ -7,11 +7,12 @@ export class UserService {
     static async createUser (data) {
         try {
             const email = data.email;
-            console.log(data); 
             const response = await AxiosService.sendCode(email);
             if (response.success === true) {
+                console.log("Hola en service");
+                console.log(data);
                 const user = await UserModel.createUser(data);
-                return { message: `User created, thanks ${user.name} ${user.lastName}` };
+                return { message: `User created, thanks ${user.email}` };
             }
             else {
                 return { error: "Please try again later"}

@@ -10,12 +10,6 @@ export const UsersSchema = Schema({
     verifyCode:{
         type: Number
     },
-    name: {
-        type: String
-    },
-    lastName:{
-        type: String
-    },
     role: {
         type: String
     },
