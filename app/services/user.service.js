@@ -9,8 +9,6 @@ export class UserService {
             const email = data.email;
             const response = await AxiosService.sendCode(email);
             if (response.success === true) {
-                console.log("Hola en service");
-                console.log(data);
                 const user = await UserModel.createUser(data);
                 return { message: `User created, thanks ${user.email}` };
             }
