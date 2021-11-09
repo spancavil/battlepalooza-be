@@ -7,12 +7,6 @@ export const UsersSchema = Schema({
         required: true,
         unique: true
     },
-    verifyCode:{
-        type: Number
-    },
-    role: {
-        type: String
-    },
     bpToken: {
         type: String
     },

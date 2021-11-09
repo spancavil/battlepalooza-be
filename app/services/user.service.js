@@ -6,15 +6,12 @@ export class UserService {
 
     static async createUser (data) {
         try {
-            const email = data.email;
-            const response = await AxiosService.sendCode(email);
-            if (response.success === true) {
-                const user = await UserModel.createUser(data);
-                return { message: `User created, thanks ${user.email}` };
+            console.log("Create user", data);            
+            const user = await UserModel.createUser(data);
+            if (user){
+                return { message: `User created, thanks ${data.email}` };
             }
-            else {
-                return { error: "Please try again later"}
-            }
+            return {error: "Database not connected"}
         } catch (error) {
             logger.error(`Error: ${error.name} ${error.message}`)
             return {error: error.name, message: error.message};

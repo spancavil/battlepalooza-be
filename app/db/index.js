@@ -8,7 +8,7 @@ Mongoose.connect(`${config.database.host}`,{
     // pass: db.common.database.password,
 })
     .then((_) => {
-        logger.info('MongoDb connected');    
+        logger.info('MongoDb connected');
     })
     .catch((error) => {
         logger.error(`Error: ${error.name} Message: ${error.message} Status Code: ${error.status}`);

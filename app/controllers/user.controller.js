@@ -84,7 +84,6 @@ export class UserController {
 
     static async payloadForte (req, res, next){
 
-        console.log(config.bpEndpoints.payloadForte);
         const {bpTokenHeader, pid} = req.body;
         try {
             const response = await axios.post(config.bpEndpoints.payloadForte,{pid}, {headers: bpTokenHeader});
