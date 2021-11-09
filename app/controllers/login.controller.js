@@ -28,11 +28,7 @@ export class LoginController {
     static async verifyCode (req,res,next){
         try {
             const email = req.body.email
-            const user = await UserModel.findByEmail(email);
-            console.log(user)
-            if (!user) {
-                return res.json({message: "User doesn't exist", success: false})
-            }
+    
             const response = await AxiosService.sendCode(email);
             if (response.success === true) {
                 return res.json({ message: `Code sent!` });

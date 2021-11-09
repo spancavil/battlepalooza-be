@@ -2,53 +2,54 @@ import jwt from 'jsonwebtoken';
 import { UserModel} from '../models/index.js';
 import logger from '../logger/bunyan.js';
 import config  from '../config/index.js';
-import HtmlContentGenerator from '../utils/generateCodeForEmail.js'
-import NodeMailerLib from '../lib/nodemailer.lib.js';
 import AxiosService from '../lib/axios.lib.js';
 
 export class LoginService {
 
-    static async firstLogin ({email, code}) {
+    static async firstLogin ({email, code, userData}) {
      
-        try {
+        try {            
+            const user = await UserModel.createUser(userData);
             
-            const user = await UserModel.findByEmail(email);
-            if(!user){
-                return { message: 'The user doesnt exist'};
+            if(user.message !== undefined && user.message.includes("duplicate")){
+                return { message: 'Email already registered'};
             }
-            
-            const response = await AxiosService.signUp(email, code)
-            console.log(response);
 
+            const response = await AxiosService.signUp(email, code)
             if (response.result !== 0){
                 return {message: 'Error at Signup: ' + response.error.text}
             }
-
+            
             user.pid = response.pid;
             user.bpToken = response.accessToken;
 
             await user.save();
 
             const token = jwt.sign({
-                    userName: user.userName,
-                    id: user._id,
-                    role: user.role,
+                    token: user.bpToken,
+                    id: user.pid,
                     },
                         `${config.session.secret}`,
                     {
                         expiresIn: config.session.expireIn
                     });
-                    const refreshToken = jwt.sign({
-                        userName: user.userName,
-                        id: user._id,
-                        role: user.role,
-                    },
-                        `${config.session.refreshExpireIn}`,
-                    {
-                        expiresIn: config.session.refreshExpireIn
-                    });
 
-            return {token, refreshToken, bpToken: user.bpToken, pid: user.pid, userId: user._id, role: user.role};              
+            const refreshToken = jwt.sign({
+                userName: user.userName,
+                id: user._id,
+                },
+                `${config.session.refreshExpireIn}`,
+                {
+                    expiresIn: config.session.refreshExpireIn
+                });
+
+            return {
+                token,
+                refreshToken,
+                pid: user.pid,
+                bpToken: user.bpToken,
+                email
+            };              
             
         } catch (error) {
             logger.error(`Error: ${error.name} ${error.message}`);
@@ -60,43 +61,50 @@ export class LoginService {
      
         try {
             
-            const user = await UserModel.findByEmail(email);
-            if(!user){
-                return { message: 'The user doesnt exist'};
-            }
-            
             const response = await AxiosService.login(email, code)
-
             if (response.error.num !== 0){
                 return {message: 'Error: ' + response.error.text}
             }
 
-            user.pid = response.pid;
+            let user = await UserModel.findByEmail(email);
+
+            if(!user){
+                user = await UserModel.createUser({email})
+                user.pid = response.pid;
+            }
+            
+            console.log(response);
+
             user.bpToken = response.accessToken;
+            user.lastLogin = new Date().toLocaleString();
 
             await user.save();
 
             const token = jwt.sign({
+                token: user.bpToken,
+                id: user.pid,
+                },
+                    `${config.session.secret}`,
+                {
+                    expiresIn: config.session.expireIn
+                });
+                const refreshToken = jwt.sign({
                     userName: user.userName,
                     id: user._id,
-                    role: user.role,
-                    },
-                        `${config.session.secret}`,
-                    {
-                        expiresIn: config.session.expireIn
-                    });
-                    const refreshToken = jwt.sign({
-                        userName: user.userName,
-                        id: user._id,
-                        role: user.role,
-                    },
-                        `${config.session.refreshExpireIn}`,
-                    {
-                        expiresIn: config.session.refreshExpireIn
-                    });
+                },
+                    `${config.session.refreshExpireIn}`,
+                {
+                    expiresIn: config.session.refreshExpireIn
+                });
 
-            return {token, refreshToken, bpToken: user.bpToken, pid: user.pid, userId: user._id, role: user.role};              
-            
+            return {
+                token,
+                refreshToken,
+                pid: user.pid,
+                bpToken: user.bpToken,
+                email
+            };
+
         } catch (error) {
             logger.error(`Error: ${error.name} ${error.message}`);
             return {error: error.name, message: error.message};
