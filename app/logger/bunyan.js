@@ -10,7 +10,7 @@ const logger = Bunyan.createLogger({
         },
         {
             level: 'error',
-            path: '/var/www/myapp/myapp-errors.log'
+            path: './bp-api-errors.log'
         }
     ]
 });
