@@ -49,7 +49,8 @@ export class LoginService {
                 refreshToken,
                 pid: user.pid,
                 bpToken: user.bpToken,
-                email
+                email,
+                created_at: user.created_at
             };              
             
         } catch (error) {
@@ -103,7 +104,8 @@ export class LoginService {
                 refreshToken,
                 pid: user.pid,
                 bpToken: user.bpToken,
-                email
+                email,
+                created_at: user.created_at
             };
 
         } catch (error) {
