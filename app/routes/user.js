@@ -4,7 +4,7 @@ import AuthMiddleware from '../middelware/auth.js';
 
 const router = Router();
 
-router.post('/create', UserController.userRegistration );
+// router.post('/create', UserController.userRegistration );
 // router.get('/',AuthMiddleware, UserController.findOneUser );
 // router.get('/search',AuthMiddleware, UserController.findAllUsers );
 // router.put('/',AuthMiddleware, UserController.updateUser );

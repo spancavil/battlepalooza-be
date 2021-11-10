@@ -1,7 +1,6 @@
 import { LoginService } from '../services/index.js';
 import logger from "../logger/bunyan.js";
 import AxiosService from '../lib/axios.lib.js';
-import { UserModel } from '../models/user.model.js';
 
 export class LoginController {
     static async firstLogin (req, res) {
@@ -10,6 +9,7 @@ export class LoginController {
             const data = await LoginService.firstLogin(req.body);
             return res.json({success: true, data})
             } catch (error) {
+            logger.info(`Error: ${error.name} ${error.message}`);
             logger.error(`Error: ${error.name} ${error.message}`);
             return res.json({error: error.name, message: error.message});
         }
@@ -20,6 +20,7 @@ export class LoginController {
             const data = await LoginService.login(req.body);
             return res.json({success: true, data})
             } catch (error) {
+            logger.info(`Error: ${error.name} ${error.message}`);
             logger.error(`Error: ${error.name} ${error.message}`);
             return res.json({error: error.name, message: error.message});
         }
@@ -38,6 +39,7 @@ export class LoginController {
             }
 
         } catch (error) {
+            logger.info(`Error: ${error.name} ${error.message}`);
             logger.error(`Error: ${error.name} ${error.message}`);
             res.send({success: false, message: error.message});
         }

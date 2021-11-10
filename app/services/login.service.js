@@ -8,7 +8,7 @@ export class LoginService {
 
     static async firstLogin ({email, code, userData}) {
      
-        try {            
+        try {      
             const user = await UserModel.createUser(userData);
             
             if(user.message !== undefined && user.message.includes("duplicate")){
@@ -22,6 +22,7 @@ export class LoginService {
             
             user.pid = response.pid;
             user.bpToken = response.accessToken;
+            user.linkedWithMobile = false;
 
             await user.save();
 
@@ -52,6 +53,7 @@ export class LoginService {
             };              
             
         } catch (error) {
+            logger.info(`Error: ${error.name} ${error.message}`);
             logger.error(`Error: ${error.name} ${error.message}`);
             return {error: error.name, message: error.message};
         }
@@ -71,10 +73,9 @@ export class LoginService {
             if(!user){
                 user = await UserModel.createUser({email})
                 user.pid = response.pid;
+                user.linkedWithMobile = true;
             }
             
-            console.log(response);
-
             user.bpToken = response.accessToken;
             user.lastLogin = new Date().toLocaleString();
 
@@ -106,6 +107,7 @@ export class LoginService {
             };
 
         } catch (error) {
+            logger.info(`Error: ${error.name} ${error.message}`);
             logger.error(`Error: ${error.name} ${error.message}`);
             return {error: error.name, message: error.message};
         }

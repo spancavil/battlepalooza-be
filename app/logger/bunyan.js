@@ -1,9 +1,18 @@
 import Bunyan from 'bunyan';
 
 const logger = Bunyan.createLogger({
-    name: "New Proyect",
+    name: "BP-api",
     level: "info",
-    stream: process.stdout,
+    streams: [
+        {
+            level: 'info',
+            stream: process.stdout
+        },
+        {
+            level: 'error',
+            path: '/var/www/myapp/myapp-errors.log'
+        }
+    ]
 });
 
 export default logger;

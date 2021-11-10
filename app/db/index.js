@@ -12,4 +12,5 @@ Mongoose.connect(`${config.database.host}`,{
     })
     .catch((error) => {
         logger.error(`Error: ${error.name} Message: ${error.message} Status Code: ${error.status}`);
+        logger.error(`Error: ${error.name} Message: ${error.message} Status Code: ${error.status}`);
     })

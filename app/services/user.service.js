@@ -1,9 +1,9 @@
-import { UserModel } from '../models/index.js';
+/* import { UserModel } from '../models/index.js';
 import logger from '../logger/bunyan.js';
-import AxiosService from '../lib/axios.lib.js';
+import AxiosService from '../lib/axios.lib.js'; */
 
 export class UserService {
-
+/* 
     static async createUser (data) {
         try {
             console.log("Create user", data);            
@@ -60,5 +60,5 @@ export class UserService {
             logger.error(`Error: ${error.name} ${error.message}`);
             return {error: error.name, message: error.message};
         }
-    }
+    } */
 }

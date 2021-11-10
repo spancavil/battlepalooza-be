@@ -22,6 +22,9 @@ export const UsersSchema = Schema({
     },
     lastLogin:{
         type: String
+    },
+    linkedWithMobile:{
+        type: Boolean
     }
 });
 

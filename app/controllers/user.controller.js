@@ -4,12 +4,13 @@ import axios from 'axios';
 import config from '../config/index.js';
 
 export class UserController {
-    static async userRegistration (req, res, next) {
+    /* static async userRegistration (req, res, next) {
      
         try {
             const data = await UserService.createUser(req.body);
             return res.json({success: true, data})
         } catch (error) {
+            logger.info(`Error: ${error.name} ${error.message}`);
             logger.error(`Error: ${error.name} ${error.message}`)
             return res.json({error: error.name, message: error.message});
         }
@@ -23,6 +24,7 @@ export class UserController {
             const data = await UserService.findUserById(id);
             res.json({success: true, data})
         } catch (error) {
+            logger.info(`Error: ${error.name} ${error.message}`);
             logger.error(`Error: ${error.name} ${error.message}`)
             res.status(error.status || 500).json({error: error.name, message: error.message});
             next(error);
@@ -36,6 +38,7 @@ export class UserController {
             const data = await UserService.findAllUsers();
             res.json({success: true, data})
         } catch (error) {
+            logger.info(`Error: ${error.name} ${error.message}`);
             logger.error(`Error en findAll de User Controller: ${error.name} ${error.message}`)
             res.status(error.status || 500).json({error: error.name, message: error.message});
             next(error);
@@ -49,6 +52,7 @@ export class UserController {
             const data = await UserService.updateUserData(req.body, id)
                 res.json({success: true, data})
         } catch (error) {
+            logger.info(`Error: ${error.name} ${error.message}`);
             logger.error(`Error: ${error.name} ${error.message}`);
             res.status(error.status || 500).json({error: error.name, message: error.message});
             next(error);
@@ -62,11 +66,12 @@ export class UserController {
             const data = await UserService.deleteUser(id)
                 res.json({success: true, data})
         } catch (error) {
+            logger.info(`Error: ${error.name} ${error.message}`);
             logger.error(`Error: ${error.name} ${error.message}`);
             res.status(error.status || 500).json({error: error.name, message: error.message});
             next(error);
         }
-    }
+    } */
 
     static async verifyReCaptcha (req, res, next){
         const {captchaToken} = req.body;
@@ -77,6 +82,7 @@ export class UserController {
                     res.json(response.data)
                 })
         } catch (error) {
+            logger.info(`Error: ${error.name} ${error.message}`);
             logger.error(`Error: ${error.name} ${error.message}`);
             res.status(error.status || 500).json({error: error.name, message: error.message});
         }
@@ -89,6 +95,7 @@ export class UserController {
             const response = await axios.post(config.bpEndpoints.payloadForte,{pid}, {headers: bpTokenHeader});
             return res.json(response.data);
         } catch (error) {
+            logger.info(`Error: ${error.name} ${error.message}`);
             logger.error(`Error: ${error.name} ${error.message}`);
             res.status(error.status || 500).json({error: error.name, message: error.message});
         }
@@ -100,7 +107,7 @@ export class UserController {
             const response = await axios.post(config.bpEndpoints.forteBalance ,{pid}, {headers: bpTokenHeader});
             return res.json(response.data);
         } catch (error) {
-            console.log(error);
+            logger.info(`Error: ${error.name} ${error.message}`);
             logger.error(`Error: ${error.name} ${error.message}`);
             res.status(error.status || 500).json({error: error.name, message: error.message});
         }
