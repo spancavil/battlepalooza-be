@@ -9,17 +9,26 @@ export class LoginService {
     static async firstLogin ({email, code, userData}) {
      
         try {      
-            const user = await UserModel.createUser(userData);
+            /* const user = await UserModel.createUser(userData);
             
             if(user.message !== undefined && user.message.includes("duplicate")){
                 return { message: 'Email already registered'};
-            }
+            } */
 
             const response = await AxiosService.signUp(email, code)
             if (response.result !== 0){
                 return {message: 'Error at Signup: ' + response.error.text}
             }
+
+            //Checks for existing user with tah email
+            const user = await UserModel.findByEmail(email);
             
+            //If user does not exist, create it
+            if (!user) {
+                user = await UserModel.createUser(userData);
+            }
+            
+            //Always save in the user this data
             user.pid = response.pid;
             user.bpToken = response.accessToken;
             user.linkedWithMobile = false;
