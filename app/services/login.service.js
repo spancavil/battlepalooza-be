@@ -21,7 +21,7 @@ export class LoginService {
             }
 
             //Checks for existing user with tah email
-            const user = await UserModel.findByEmail(email);
+            let user = await UserModel.findByEmail(email);
             
             //If user does not exist, create it
             if (!user) {
