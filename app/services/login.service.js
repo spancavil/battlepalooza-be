@@ -82,10 +82,10 @@ export class LoginService {
 
             if(!user){
                 user = await UserModel.createUser({email})
-                user.pid = response.pid;
                 user.linkedWithMobile = true;
             }
             
+            user.pid = response.pid;
             user.bpToken = response.accessToken;
             user.lastLogin = new Date().toLocaleString();
 
