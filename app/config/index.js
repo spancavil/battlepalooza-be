@@ -42,6 +42,8 @@ const config = {
     login: process.env.LOGIN_URL,
     payloadForte: process.env.PAYLOAD_FORTE_URL,
     forteBalance: process.env.FORTE_BALANCE_URL,
+    getCollection: process.env.GET_COLLECTION_URL,
+    getCollectionDetail: process.env.GET_COLLECTION_DETAIL_URL
   }
 };
 

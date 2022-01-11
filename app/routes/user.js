@@ -11,6 +11,8 @@ const router = Router();
 // router.post('/',AuthMiddleware, UserController.deleteUser );
 router.post('/verify-recaptcha', UserController.verifyReCaptcha);
 router.post('/payload-forte', UserController.payloadForte);
-router.post('/forte-balance', UserController.forteBalance)
+router.post('/forte-balance', UserController.forteBalance);
+router.post('/collection', UserController.getCollection);
+router.post('/collection-detail', UserController.getCollectionDetail);
 
 export default router;
