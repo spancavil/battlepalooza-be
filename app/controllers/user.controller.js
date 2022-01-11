@@ -112,4 +112,28 @@ export class UserController {
             res.status(error.status || 500).json({error: error.name, message: error.message});
         }
     }
+
+    static async getCollection (req,res){
+        const {bpTokenHeader, pid} = req.body;
+        try {
+            const response = await axios.post(config.bpEndpoints.getCollection ,{pid}, {headers: bpTokenHeader});
+            return res.json(response.data);
+        } catch (error) {
+            logger.info(`Error: ${error.name} ${error.message}`);
+            logger.error(`Error: ${error.name} ${error.message}`);
+            res.status(error.status || 500).json({error: error.name, message: error.message});
+        }
+    }
+
+    static async getCollectionDetail (req,res){
+        const {bpTokenHeader, pid, uuid} = req.body;
+        try {
+            const response = await axios.post(config.bpEndpoints.getCollection ,{pid, uuid}, {headers: bpTokenHeader});
+            return res.json(response.data);
+        } catch (error) {
+            logger.info(`Error: ${error.name} ${error.message}`);
+            logger.error(`Error: ${error.name} ${error.message}`);
+            res.status(error.status || 500).json({error: error.name, message: error.message});
+        }
+    }
 }
