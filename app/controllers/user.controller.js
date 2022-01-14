@@ -128,7 +128,7 @@ export class UserController {
     static async getCollectionDetail (req,res){
         const {bpTokenHeader, pid, uuid} = req.body;
         try {
-            const response = await axios.post(config.bpEndpoints.getCollection ,{pid, uuid}, {headers: bpTokenHeader});
+            const response = await axios.post(config.bpEndpoints.getCollectionDetail ,{pid, uuid}, {headers: bpTokenHeader});
             return res.json(response.data);
         } catch (error) {
             logger.info(`Error: ${error.name} ${error.message}`);
