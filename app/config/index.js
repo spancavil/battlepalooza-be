@@ -43,7 +43,10 @@ const config = {
     payloadForte: process.env.PAYLOAD_FORTE_URL,
     forteBalance: process.env.FORTE_BALANCE_URL,
     getCollection: process.env.GET_COLLECTION_URL,
-    getCollectionDetail: process.env.GET_COLLECTION_DETAIL_URL
+    getCollectionDetail: process.env.GET_COLLECTION_DETAIL_URL,
+    getMarketData: process.env.GET_MARKET_DATA,
+    getMarketList: process.env.GET_MARKET_LIST,
+    getMarketDetail: process.env.GET_MARKET_DETAIL,
   }
 };
 

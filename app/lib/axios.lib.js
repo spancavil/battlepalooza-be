@@ -1,7 +1,10 @@
 import axios from "axios";
+import { response } from "express";
 import config from "../config/index.js";
 
 class AxiosService {
+
+    //USER
     static async sendCode(email){
         return axios.post(`${config.bpEndpoints.passcode}`, {
             email
@@ -28,6 +31,34 @@ class AxiosService {
             passcode: code
         })
         .then (response => {
+            return response.data
+        })
+    }
+
+    //MARKET
+    static async getMarketData (){
+        return axios.post(config.bpEndpoints.getMarketData)
+        .then (response => {
+            return response.data
+        })
+    }
+    
+    static async getMarketList (page, filter){
+        return axios.post(config.bpEndpoints.getMarketList, {
+            page,
+            filter
+        })
+        .then(response => {
+            return response.data
+        })
+    }
+
+    static async getMarketDetail (seller, uniqueId){
+        return axios.post(config.bpEndpoints.getMarketDetail, {
+            seller,
+            uniqueId
+        })
+        .then(response => {
             return response.data
         })
     }
