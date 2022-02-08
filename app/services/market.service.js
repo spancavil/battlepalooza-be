@@ -24,9 +24,9 @@ export class MarketService {
         }
     }
 
-    static async getDetail(){
+    static async getDetail(seller, uniqueId){
         try {
-            const response = await AxiosService.getMarketDetail()
+            const response = await AxiosService.getMarketDetail(seller, uniqueId)
             return response;
         } catch (error) {
             logger.info(`Error: ${error.name} ${error.message}`);
