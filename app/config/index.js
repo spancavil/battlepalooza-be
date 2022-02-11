@@ -47,6 +47,11 @@ const config = {
     getMarketData: process.env.GET_MARKET_DATA,
     getMarketList: process.env.GET_MARKET_LIST,
     getMarketDetail: process.env.GET_MARKET_DETAIL,
+    registerProductMarket: process.env.REGISTER_PRODUCT_MARKET,
+    getForteTxStatus: process.env.GET_FORTE_TX_STATUS,
+    cancelSellingMarket: process.env.CANCEL_SELLING_MARKET,
+    buyProductMarket: process.env.BUY_PRODUCT_MARKET,
+    requestWithdrawCoins: process.env.REQUEST_WITHDRAW,
   }
 };
 
