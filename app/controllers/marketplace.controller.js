@@ -54,15 +54,13 @@ export class MarketController {
 
     static async registerProduct (req, res){
         try {
-            const {pid, uuid, price, expiry, bpToken} = req.body
+            const {pid, uuid, price, bpToken} = req.body
             const parsedPrice = parseInt(price);
-            const parsedExpiry = parseInt(expiry);
             //console.log(pid, uuid, price, parsedPrice, parsedExpiry);
             const response = await axios.post(config.bpEndpoints.registerProductMarket, {
                 pid,
                 uuid,
                 price: parsedPrice,
-                expiry: parsedExpiry
             }, {headers: bpToken})
             return res.json(response.data);
         } catch (error) {
