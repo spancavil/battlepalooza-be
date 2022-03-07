@@ -3,7 +3,7 @@ import user from './user.js';
 import login from './login.js'
 import pack from './pack.js';
 import market from './market.js';
-import drops from './drops';
+import drops from './drops.js';
 
 const router = express.Router();
 

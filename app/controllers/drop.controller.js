@@ -1,6 +1,6 @@
-import logger from "../logger/bunyan";
+import logger from "../logger/bunyan.js";
 import axios from "axios";
-import config from "../config";
+import config from "../config/index.js";
 
 export class DropController {
 
