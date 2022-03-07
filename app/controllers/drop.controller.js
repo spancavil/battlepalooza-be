@@ -6,7 +6,12 @@ export class DropController {
 
     static async getDrops(req, res) {
         try {
-            const response = await axios.post(config.bpEndpoints.getDropList)
+            const page = 1;
+            const pageSize = 12;
+            const response = await axios.post(config.bpEndpoints.getDropList, {
+                page,
+                pageSize
+            })
             return res.json(response.data);
         } catch (error) {
             logger.info(`Error: ${error.name} ${error.message}`);
