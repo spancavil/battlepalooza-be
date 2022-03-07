@@ -52,6 +52,10 @@ const config = {
     cancelSellingMarket: process.env.CANCEL_SELLING_MARKET,
     buyProductMarket: process.env.BUY_PRODUCT_MARKET,
     requestWithdrawCoins: process.env.REQUEST_WITHDRAW,
+    getDropList: process.env.GET_DROP_LIST,
+    getDropDetail: process.env.GET_DROP_DETAIL,
+    payCoinNft: process.env.PAY_COIN_NFT,
+    payShopProduct: process.env.PAY_SHOP_PRODUCT,
   }
 };
 
