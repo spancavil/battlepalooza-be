@@ -24,8 +24,8 @@ export class DropController {
         try {
             const { pid, dropId } = req.body;
             const response = await axios.post(config.bpEndpoints.getDropDetail, {
-                pid: pid || "",
-                dropId
+                pid: pid,
+                dropId: dropId
             })
             return res.json(response.data);
         } catch (error) {
