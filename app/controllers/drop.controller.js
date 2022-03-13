@@ -53,7 +53,7 @@ export class DropController {
     static async buyShopNft(req, res) {
         try {
             const { pid, payForteTxId, bpToken } = req.body;
-            const response = await axios.post(config.bpEndpoints.payCoinNft, {
+            const response = await axios.post(config.bpEndpoints.payShopProduct, {
                 pid,
                 payForteTxId
             }, { headers: bpToken })
