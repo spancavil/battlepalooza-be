@@ -56,7 +56,10 @@ const config = {
     getDropDetail: process.env.GET_DROP_DETAIL,
     payCoinNft: process.env.PAY_COIN_NFT,
     payShopProduct: process.env.PAY_SHOP_PRODUCT,
-  }
+    tradeHistoryList: process.env.TRADE_HISTORY_LIST,
+    tradeHistoryDetail: process.env.TRADE_HISTORY_DETAIL,
+  },
+  historyTypes: [1,2]
 };
 
 export default config;

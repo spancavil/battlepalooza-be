@@ -72,7 +72,7 @@ export class LoginService {
     static async login ({email, code}) {
      
         try {
-            
+            console.log(email, code);
             const response = await AxiosService.login(email, code)
             if (response.error.num !== 0){
                 return {message: 'Error: ' + response.error.text}

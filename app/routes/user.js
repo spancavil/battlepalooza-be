@@ -14,5 +14,7 @@ router.post('/payload-forte', UserController.payloadForte);
 router.post('/forte-balance', UserController.forteBalance);
 router.post('/collection', UserController.getCollection);
 router.post('/collection-detail', UserController.getCollectionDetail);
+router.post('/trade-history-list', UserController.getMarketHistory);
+router.post('/trade-history-detail', UserController.getMarketHistoryDetail);
 
 export default router;
