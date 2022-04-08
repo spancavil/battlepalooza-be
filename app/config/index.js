@@ -59,7 +59,13 @@ const config = {
     tradeHistoryList: process.env.TRADE_HISTORY_LIST,
     tradeHistoryDetail: process.env.TRADE_HISTORY_DETAIL,
   },
-  historyTypes: [1,2]
+  historyTypes: [1,2],
+  staticUrls: {
+    nftIdUrl: process.env.NFT_ID_URL,
+    clanUrl: process.env.CLAN_URL,
+    rarityTypeUrl: process.env.RARITY_URL,
+    repIdUrl: process.env.REP_ID_URL,
+  }
 };
 
 export default config;
