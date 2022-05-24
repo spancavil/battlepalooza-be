@@ -7,5 +7,6 @@ router.get('/nft-data', StaticController.getNftData);
 router.get('/clans', StaticController.getClans);
 router.get('/rarity', StaticController.getRarity);
 router.get('/rep-id', StaticController.getRepresentId);
+router.get('/premium', StaticController.getPremiumBuff);
 
 export default router;

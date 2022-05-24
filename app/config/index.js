@@ -65,6 +65,7 @@ const config = {
     clanUrl: process.env.CLAN_URL,
     rarityTypeUrl: process.env.RARITY_URL,
     repIdUrl: process.env.REP_ID_URL,
+    premiumUrl: process.env.PREMIUM_URL
   }
 };
 
