@@ -75,7 +75,8 @@ export class LoginService {
             console.log(email, code);
             const response = await AxiosService.login(email, code)
             if (response.error.num !== 0){
-                return {message: 'Error at login: ' + response.error.text}
+                console.log(response);
+                return {response}
             }
 
             let user = await UserModel.findByEmail(email);
