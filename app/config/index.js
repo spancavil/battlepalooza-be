@@ -58,6 +58,8 @@ const config = {
     payShopProduct: process.env.PAY_SHOP_PRODUCT,
     tradeHistoryList: process.env.TRADE_HISTORY_LIST,
     tradeHistoryDetail: process.env.TRADE_HISTORY_DETAIL,
+    getWalletPaymentToken: process.env.GET_WALLET_PAYMENT_TOKEN,
+    getWalletCryptoTransactions: process.env.GET_WALLET_CRYPTO_TRANSACTIONS,
   },
   historyTypes: [1,2],
   staticUrls: {

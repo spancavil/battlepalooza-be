@@ -16,5 +16,7 @@ router.post('/collection', UserController.getCollection);
 router.post('/collection-detail', UserController.getCollectionDetail);
 router.post('/trade-history-list', UserController.getMarketHistory);
 router.post('/trade-history-detail', UserController.getMarketHistoryDetail);
+router.post('/get-wallet-payment-token', UserController.getWalletPaymentToken);
+router.post('/get-wallet-crypto-transactions', UserController.getWalletCryptoTransactions);
 
 export default router;
