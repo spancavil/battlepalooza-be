@@ -1,6 +1,6 @@
-import { PackService } from '../services/index.js';
 import logger from "../logger/bunyan.js";
 import config from '../config/index.js';
+import axios from 'axios';
 
 export class PackController {
 
