@@ -4,6 +4,6 @@ import AuthMiddleware from '../middelware/auth.js';
 
 const router = Router();
 
-router.post('/', AuthMiddleware, PackController.getPackNftInfo);
+router.post('/', PackController.getPackNftInfo);
 
 export default router;
