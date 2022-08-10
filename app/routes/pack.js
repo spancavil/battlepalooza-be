@@ -4,10 +4,6 @@ import AuthMiddleware from '../middelware/auth.js';
 
 const router = Router();
 
-router.post('/create', PackController.packRegistration);
-router.get('/', AuthMiddleware, PackController.findOnePack);
-router.get('/search', AuthMiddleware, PackController.findAllPacks);
-router.put('/', AuthMiddleware, PackController.updatePack);
-router.post('/', AuthMiddleware, PackController.deletePack);
+router.get('/', AuthMiddleware, PackController.getPackNftInfo);
 
 export default router;

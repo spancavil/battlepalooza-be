@@ -60,6 +60,7 @@ const config = {
     tradeHistoryDetail: process.env.TRADE_HISTORY_DETAIL,
     getWalletPaymentToken: process.env.GET_WALLET_PAYMENT_TOKEN,
     getWalletCryptoTransactions: process.env.GET_WALLET_CRYPTO_TRANSACTIONS,
+    getPackNftInfo: process.env.GET_PACK_NFT_INFO,
   },
   historyTypes: [1,2],
   staticUrls: {
