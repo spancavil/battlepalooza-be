@@ -23,7 +23,7 @@ export class MarketController {
                 pageSize = 25, 
                 filter = null, 
                 orderBy = 'created', 
-                desc = false
+                desc = true
             } = req.body;
             const params = {page, pageSize, filter, orderBy, desc}
             const response = await MarketService.getList(params);
