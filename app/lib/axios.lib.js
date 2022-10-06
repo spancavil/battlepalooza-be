@@ -43,11 +43,8 @@ class AxiosService {
         })
     }
     
-    static async getMarketList (page, filter){
-        return axios.post(config.bpEndpoints.getMarketList, {
-            page,
-            filter
-        })
+    static async getMarketList (params){
+        return axios.post(config.bpEndpoints.getMarketList, params)
         .then(response => {
             return response.data
         })

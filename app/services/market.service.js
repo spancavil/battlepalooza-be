@@ -13,9 +13,10 @@ export class MarketService {
         }
     }
 
-    static async getList(page, filter){
+    static async getList(params){
         try {
-            const response = await AxiosService.getMarketList()
+            console.log(params);
+            const response = await AxiosService.getMarketList(params)
             return response
         } catch (error) {
             logger.info(`Error: ${error.name} ${error.message}`);

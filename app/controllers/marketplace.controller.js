@@ -18,20 +18,15 @@ export class MarketController {
 
     static async getMarketList (req, res){
         try {
-            const {page, filter} = req.body;
-            /* "filter": {
-                "rarity": {
-                  "type": 3
-                },
-                "repId": {
-                  "type": 1,
-                  "id": 12
-                },
-                "remainPlayCount": {
-                  "min": 100,
-                  "max": 0
-                } */
-            const response = await MarketService.getList(page, filter);
+            const {
+                page = 1,
+                pageSize = 25, 
+                filter = null, 
+                orderBy = 'created', 
+                desc = false
+            } = req.body;
+            const params = {page, pageSize, filter, orderBy, desc}
+            const response = await MarketService.getList(params);
             return res.json(response);
         } catch (error) {
             logger.info(`Error: ${error.name} ${error.message}`);
