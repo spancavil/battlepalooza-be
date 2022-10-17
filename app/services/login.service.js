@@ -35,7 +35,7 @@ export class LoginService {
 
             await user.save();
 
-            const token = jwt.sign({
+            /* const token = jwt.sign({
                     token: user.bpToken,
                     id: user.pid,
                     },
@@ -51,11 +51,9 @@ export class LoginService {
                 `${config.session.refreshExpireIn}`,
                 {
                     expiresIn: config.session.refreshExpireIn
-                });
+                }); */
 
             return {
-                token,
-                refreshToken,
                 pid: user.pid,
                 bpToken: user.bpToken,
                 email,
@@ -92,26 +90,24 @@ export class LoginService {
 
             await user.save();
 
-            const token = jwt.sign({
-                token: user.bpToken,
-                id: user.pid,
-                },
-                    `${config.session.secret}`,
-                {
-                    expiresIn: config.session.expireIn
-                });
-                const refreshToken = jwt.sign({
-                    userName: user.userName,
-                    id: user._id,
-                },
-                    `${config.session.refreshExpireIn}`,
-                {
-                    expiresIn: config.session.refreshExpireIn
-                });
+            // const token = jwt.sign({
+            //     token: user.bpToken,
+            //     id: user.pid,
+            //     },
+            //         `${config.session.secret}`,
+            //     {
+            //         expiresIn: config.session.expireIn
+            //     });
+            //     const refreshToken = jwt.sign({
+            //         userName: user.userName,
+            //         id: user._id,
+            //     },
+            //         `${config.session.refreshExpireIn}`,
+            //     {
+            //         expiresIn: config.session.refreshExpireIn
+            //     });
 
             return {
-                token,
-                refreshToken,
                 pid: user.pid,
                 bpToken: user.bpToken,
                 email,
