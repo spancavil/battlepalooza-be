@@ -5,11 +5,9 @@ import axios from 'axios';
 export class PackController {
 
     static async getPackNftInfo (req,res) {
-        const { pid } = req.body;
         try {
             const response = await axios.post(
                 config.bpEndpoints.getPackNftInfo,
-                {pid},
             );
             return res.json(response.data);
         } catch (error) {
