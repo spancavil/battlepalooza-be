@@ -21,6 +21,10 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.0.7",
     "morgan": "^1.10.0",
+    "node-rsa": "^1.1.1",
     "nodemon": "^2.0.13"
+  },
+  "devDependencies": {
+    "@types/node-rsa": "^1.1.1"
   }
 }

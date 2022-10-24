@@ -1,33 +1,31 @@
-import jwt from 'jsonwebtoken';
-import { UserModel} from '../models/index.js';
-import logger from '../logger/bunyan.js';
-import config  from '../config/index.js';
-import AxiosService from '../lib/axios.lib.js';
+import { UserModel } from "../models/index.js";
+import logger from "../logger/bunyan.js";
+import config from "../config/index.js";
+import AxiosService from "../lib/axios.lib.js";
+import NodeRSA from "node-rsa";
 
 export class LoginService {
-
-    static async firstLogin ({email, code, userData}) {
-     
-        try {      
+    static async firstLogin({ email, code, userData }) {
+        try {
             /* const user = await UserModel.createUser(userData);
             
             if(user.message !== undefined && user.message.includes("duplicate")){
                 return { message: 'Email already registered'};
             } */
 
-            const response = await AxiosService.signUp(email, code)
-            if (response.result !== 0){
-                return {message: 'Error at Signup: ' + response.error.text}
+            const response = await AxiosService.signUp(email, code);
+            if (response.result !== 0) {
+                return { message: "Error at Signup: " + response.error.text };
             }
 
             //Checks for existing user with tah email
             let user = await UserModel.findByEmail(email);
-            
+
             //If user does not exist, create it
             if (!user) {
                 user = await UserModel.createUser(userData);
             }
-            
+
             //Always save in the user this data
             user.pid = response.pid;
             user.bpToken = response.accessToken;
@@ -52,38 +50,43 @@ export class LoginService {
                 {
                     expiresIn: config.session.refreshExpireIn
                 }); */
+            const pubKey = config.session.frontPubKey.replace(/\\n/g, "\n");
+            const key = new NodeRSA(pubKey);
+            const encryptedText = key.encrypt(
+                Buffer.from(user.bpToken),
+                "base64"
+            );
 
             return {
                 pid: user.pid,
-                bpToken: user.bpToken,
+                bpToken: encryptedText,
                 email,
-                created_at: user.created_at
-            };              
+                created_at: user.created_at,
+            };
             
         } catch (error) {
             logger.info(`Error: ${error.name} ${error.message}`);
             logger.error(`Error: ${error.name} ${error.message}`);
-            return {error: error.name, message: error.message};
+            return { error: error.name, message: error.message };
         }
     }
 
-    static async login ({email, code}) {
-     
+    static async login({ email, code }) {
         try {
             console.log(email, code);
-            const response = await AxiosService.login(email, code)
-            if (response.error.num !== 0){
+            const response = await AxiosService.login(email, code);
+            if (response.error.num !== 0) {
                 console.log(response);
-                return {response}
+                return { response };
             }
 
             let user = await UserModel.findByEmail(email);
 
-            if(!user){
-                user = await UserModel.createUser({email})
+            if (!user) {
+                user = await UserModel.createUser({ email });
                 user.linkedWithMobile = true;
             }
-            
+
             user.pid = response.pid;
             user.bpToken = response.accessToken;
             user.lastLogin = new Date().toLocaleString();
@@ -107,17 +110,23 @@ export class LoginService {
             //         expiresIn: config.session.refreshExpireIn
             //     });
 
+            const pubKey = config.session.frontPubKey.replace(/\\n/g, "\n");
+            const key = new NodeRSA(pubKey);
+            const encryptedText = key.encrypt(
+                Buffer.from(user.bpToken),
+                "base64"
+            );
             return {
                 pid: user.pid,
-                bpToken: user.bpToken,
+                bpToken: encryptedText,
                 email,
-                created_at: user.created_at
+                created_at: user.created_at,
             };
-
         } catch (error) {
+            console.log(error);
             logger.info(`Error: ${error.name} ${error.message}`);
             logger.error(`Error: ${error.name} ${error.message}`);
-            return {error: error.name, message: error.message};
+            return { error: error.name, message: error.message };
         }
     }
 

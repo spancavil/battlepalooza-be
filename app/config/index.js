@@ -29,6 +29,7 @@ const config = {
     name: process.env.DB_NAME,
   },
   session:{
+    frontPubKey: process.env.FRONT_PUBKEY,
     secret: process.env.SECRET,
     expireIn: process.env.EXPIRE_IN,
     refreshExpireIn: process.env.REFRESH_EXPIRE_IN
