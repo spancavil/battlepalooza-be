@@ -37,10 +37,11 @@ export class DropController {
 
     static async payCoinNft(req, res) {
         try {
-            const { pid, productId, bpToken } = req.body;
+            const { pid, productId, bpToken, quantity } = req.body;
             const response = await axios.post(config.bpEndpoints.payCoinNft, {
                 pid,
-                productId
+                productId,
+                purchaseCnt: quantity || 1
             }, { headers: bpToken })
             return res.json(response.data);
         } catch (error) {
