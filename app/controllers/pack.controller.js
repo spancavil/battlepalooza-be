@@ -16,4 +16,17 @@ export class PackController {
             res.status(error.status || 500).json({ error: error.name, message: error.message });
         }
     }
+
+    static async getDateNow (req,res) {
+        try {
+            const response = await axios.get(
+                config.timeUrl.worldTimeUrl,
+            );
+            return res.json(response.data);
+        } catch (error) {
+            logger.info(`Error: ${error.name} ${error.message}`);
+            logger.error(`Error: ${error.name} ${error.message}`);
+            res.status(error.status || 500).json({ error: error.name, message: error.message });
+        }
+    }
 }

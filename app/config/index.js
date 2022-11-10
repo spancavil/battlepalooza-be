@@ -71,6 +71,9 @@ const config = {
     rarityTypeUrl: process.env.RARITY_URL,
     repIdUrl: process.env.REP_ID_URL,
     premiumUrl: process.env.PREMIUM_URL
+  },
+  timeUrl: {
+    worldTimeUrl: process.env.WORLDTIMEAPI_IP_URL,
   }
 };
 
