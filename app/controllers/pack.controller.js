@@ -19,10 +19,8 @@ export class PackController {
 
     static async getDateNow (req,res) {
         try {
-            const response = await axios.get(
-                config.timeUrl.worldTimeUrl,
-            );
-            return res.json(response.data);
+            const actualTimeUTCmilliseconds = new Date().getTime()
+            return res.json({unixtime: actualTimeUTCmilliseconds});
         } catch (error) {
             logger.info(`Error: ${error.name} ${error.message}`);
             logger.error(`Error: ${error.name} ${error.message}`);
