@@ -34,7 +34,7 @@ export class DropController {
             res.status(error.status || 500).json({ error: error.name, message: error.message });
         }
     }
-
+/* 
     static async payCoinNft(req, res) {
         try {
             const { pid, productId, bpToken, quantity } = req.body;
@@ -49,14 +49,15 @@ export class DropController {
             logger.error(`Error: ${error.name} ${error.message}`);
             res.status(error.status || 500).json({ error: error.name, message: error.message });
         }
-    }
+    } */
 
     static async buyShopNft(req, res) {
         try {
-            const { pid, payForteTxId, bpToken } = req.body;
-            const response = await axios.post(config.bpEndpoints.payShopProduct, {
+            const { pid, productId, quantity, bpToken } = req.body;
+            const response = await axios.post(config.bpEndpoints.buyShopNft, {
                 pid,
-                payForteTxId
+                productId,
+                purchaseCnt: quantity || 1
             }, { headers: bpToken })
             return res.json(response.data);
         } catch (error) {
