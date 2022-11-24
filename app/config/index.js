@@ -66,6 +66,7 @@ const config = {
     getPackNftInfo: process.env.GET_PACK_NFT_INFO,
     getMaintenanceStatus: process.env.GET_MAINTENANCE_STATUS,
     buyShopNft: process.env.BUY_NFT_PRODUCT,
+    burnNft: proces.env.BURN_NFT_PRODUCT
   },
   historyTypes: [1,2],
   staticUrls: {
